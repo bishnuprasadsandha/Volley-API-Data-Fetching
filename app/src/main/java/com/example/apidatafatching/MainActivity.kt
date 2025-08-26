@@ -3,9 +3,15 @@ package com.example.apidatafatching
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.google.gson.GsonBuilder
+import android.content.Context
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 
 class MainActivity : AppCompatActivity() {
 
@@ -15,6 +21,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        val recyclerView = findViewById<RecyclerView>(R.id.rev)
 
         val requestQueue = Volley.newRequestQueue(this)
 
@@ -26,7 +34,13 @@ class MainActivity : AppCompatActivity() {
             userInfoItemList.clear()
             userInfoItemList.addAll(usersArray)
 
-            Toast.makeText(this, userInfoItemList.toString(), Toast.LENGTH_SHORT).show()
+            // FIXED: Changed "userInfo" to "userInfoItemList"
+            // FIXED: Corrected typo in "adopter" → should be "adapter"
+            val adapter = Adapter(this, userInfoItemList)
+            recyclerView.layoutManager = LinearLayoutManager(this)
+            recyclerView.adapter = adapter
+
+            Toast.makeText(this, "Data Loaded", Toast.LENGTH_SHORT).show()
 
         }, { error ->
             error.printStackTrace()
