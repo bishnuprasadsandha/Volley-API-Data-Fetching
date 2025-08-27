@@ -1,4 +1,4 @@
-Volley API Data Fetching (Android)!
+Volley API Data Fetching (Android)
 
 This repository demonstrates how to fetch data from a REST API in an Android application using Volley, and display the results in a RecyclerView.
 Volley is an HTTP library that makes networking for Android apps faster and easier.
